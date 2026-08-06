@@ -188,12 +188,8 @@ const stopInvitationPolling = () => {
 watch(
   () => authStore.isLoggedIn,
   (logged) => {
-    if (logged) {
-      startInvitationPolling()
-      authStore.refreshFromAuthMe()
-    } else {
-      stopInvitationPolling()
-    }
+    if (logged) startInvitationPolling()
+    else stopInvitationPolling()
   },
   { immediate: true },
 )

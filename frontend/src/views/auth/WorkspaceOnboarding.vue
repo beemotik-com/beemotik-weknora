@@ -123,8 +123,8 @@ watch(
 )
 
 async function onTenantCreated(tenant: TenantInfo) {
-  authStore.setSelectedTenant(tenant.id, tenant.name)
   await authStore.refreshFromAuthMe()
+  authStore.setSelectedTenant(tenant.id, tenant.name)
   await router.replace('/platform/knowledge-bases')
 }
 

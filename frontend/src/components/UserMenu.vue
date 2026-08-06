@@ -332,8 +332,8 @@ const openCreateTenantDialog = () => {
 }
 
 const onTenantCreated = async (newTenant: TenantInfo) => {
-  authStore.setSelectedTenant(newTenant.id, newTenant.name)
   await authStore.refreshFromAuthMe()
+  authStore.setSelectedTenant(newTenant.id, newTenant.name)
   const persist = persistLastActiveTenantPreference(newTenant.id)
   Promise.race([persist, new Promise((r) => setTimeout(r, 300))])
     .finally(() => navigateAfterTenantSwitch())
